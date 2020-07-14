@@ -8,5 +8,10 @@ namespace Parity.Library
         {
             return number % 2 != 0;
         }
+
+        public static bool isOdd(int v)
+        {
+            return false;
+        }
     }
 }
