@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Parity.Library;
 
 namespace ParityUnitTest
 {
@@ -10,9 +11,11 @@ namespace ParityUnitTest
         }
 
         [Test]
-        public void Test1()
+        public void IsEven_ShouldReturnTrue_WhenNumberIsOne()
         {
-            Assert.Pass();
+            bool isEven = ParityService.IsEven(1);
+
+            Assert.That(isEven, Is.True);
         }
     }
 }
