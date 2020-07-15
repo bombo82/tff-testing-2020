@@ -19,17 +19,40 @@ namespace StringCalculator
 
         private static List<string> Tokenize(string text)
         {
+            string[] separator = GetSeparator(text);
+            string stringToTokenize = GetStringToTokenize(text);
+
+            return stringToTokenize.Split(separator, StringSplitOptions.None).ToList();
+        }
+
+        private static string GetStringToTokenize(string text)
+        {
+            if (IsCustomSeparator(text))
+            {
+                text = text.Substring(4);
+            }
+
+            return text;
+        }
+
+        private static string[] GetSeparator(string text)
+        {
             string[] separator;
-            if (text.StartsWith("//"))
+            if (IsCustomSeparator(text))
             {
                 separator = new string[1] { text.Substring(2, 1) };
-                text = text.Substring(4);
             }
             else
             {
                 separator = new string[] { ",", "/n" };
             }
-            return text.Split(separator, StringSplitOptions.None).ToList();
+
+            return separator;
+        }
+
+        private static bool IsCustomSeparator(string text)
+        {
+            return text.StartsWith("//");
         }
 
         private static int Sum(List<int> numbers)
