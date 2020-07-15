@@ -28,6 +28,7 @@ namespace StringCalculator.Test
 
         [TestCase("1,2", 3)]
         [TestCase("1,2,3", 6)]
+        [TestCase("1, 1000", 1001)]
         public void ReturnTheSum_WhenInputIsACommaSeparatedList(string text, int expectedNumber)
         {
             int number = StringCalculatorService.Add(text);
@@ -52,17 +53,18 @@ namespace StringCalculator.Test
         }
 
         [Test]
-        public void ThrowAnException_WhenInputContainsNegativeNumbers_OLD()
-        {
-            Assert.That(() => StringCalculatorService.Add("-1"), Throws.ArgumentException.With
-                .Property("Message").EqualTo("Negatives not allowed"));
-        }
-
-        [Test]
         public void ThrowAnException_WhenInputContainsNegativeNumbers()
         {
             Assert.That(() => StringCalculatorService.Add("-1,-3"), Throws.ArgumentException.With
                 .Property("Message").EqualTo("Negatives not allowed: -1, -3"));
+        }
+
+        [Test]
+        public void SumTwo_WhenNumberIsGreaterThanAThousand()
+        {
+            int number = StringCalculatorService.Add("1,1001");
+
+            Assert.That(number, Is.EqualTo(3));
         }
     }
 }

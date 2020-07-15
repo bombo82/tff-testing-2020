@@ -79,7 +79,14 @@ namespace StringCalculator
             int sum = 0;
             foreach (int number in numbers)
             {
-                sum += number;
+                if (number > 1000)
+                {
+                    sum += 2;
+                }
+                else
+                {
+                    sum += number;
+                }
             }
 
             return sum;
