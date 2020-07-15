@@ -10,8 +10,10 @@ namespace StringCalculator.Test
         }
 
         [Test]
-        public void Test1()
+        public void ReturnANumber_WhenInputIsAString()
         {
+            int number = StringCalculatorService.Add("qualsiasi stringa");
+
             Assert.Pass();
         }
     }
