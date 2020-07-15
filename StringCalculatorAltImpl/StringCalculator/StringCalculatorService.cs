@@ -56,16 +56,19 @@ namespace StringCalculator
 
         private static string[] GetSeparator(string text)
         {
-            string[] separator;
-            if (IsCustomSeparator(text))
-            {
-                separator = new string[1] { text.Substring(2, 1) };
-            }
-            else
-            {
-                separator = new string[] { ",", "\n" };
-            }
+            return IsCustomSeparator(text) ? GetCustomSeparator(text) : GetDefaultSeparator();
+        }
 
+        private static string[] GetDefaultSeparator()
+        {
+            return new string[] { ",", "\n" };
+        }
+
+        private static string[] GetCustomSeparator(string text)
+        {
+            string[] separator;
+            int newlineIndex = text.IndexOf("\n");
+            separator = new string[1] { text.Substring(2, newlineIndex - 2) };
             return separator;
         }
 

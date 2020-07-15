@@ -66,5 +66,13 @@ namespace StringCalculator.Test
 
             Assert.That(number, Is.EqualTo(3));
         }
+
+        [Test]
+        public void AcceptCustomSeparatorLongherThanOneCharacter()
+        {
+            int number = StringCalculatorService.Add("//cd\n1cd2");
+
+            Assert.That(number, Is.EqualTo(3));
+        }
     }
 }
