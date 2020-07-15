@@ -9,6 +9,7 @@ namespace StringCalculator
         public static int Add(string text)
         {
             if (text.Length == 0) return 0;
+
             List<string> tokens = Tokenize(text);
             List<int> numbers = Convert(tokens);
             int sum = Sum(numbers);
@@ -18,7 +19,17 @@ namespace StringCalculator
 
         private static List<string> Tokenize(string text)
         {
-            return text.Split(new string[] { ",", "/n" }, StringSplitOptions.None).ToList();
+            string[] separator;
+            if (text.StartsWith("//"))
+            {
+                separator = new string[1] { text.Substring(2, 1) };
+                text = text.Substring(4);
+            }
+            else
+            {
+                separator = new string[] { ",", "/n" };
+            }
+            return text.Split(separator, StringSplitOptions.None).ToList();
         }
 
         private static int Sum(List<int> numbers)
