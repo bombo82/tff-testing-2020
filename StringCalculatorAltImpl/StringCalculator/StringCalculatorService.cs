@@ -4,9 +4,11 @@ namespace StringCalculator
 {
     public class StringCalculatorService
     {
-        public static int Add(string v)
+        public static int Add(string text)
         {
-            return 0;
+            if (text.Length == 0) return 0;
+
+            return int.Parse(text);
         }
     }
 }
