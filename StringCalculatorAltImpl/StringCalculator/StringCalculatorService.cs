@@ -22,9 +22,17 @@ namespace StringCalculator
 
         private static void CheckNegatives(List<int> numbers)
         {
+            List<int> negatives = new List<int>();
             foreach (int number in numbers)
             {
-                if (number < 0) throw new ArgumentException("Negatives not allowed");
+                if (number < 0)
+                {
+                    negatives.Add(number);
+                }
+            }
+            if (negatives.Count > 0)
+            {
+                throw new ArgumentException("Negatives not allowed: " + string.Join(", ", negatives));
             }
         }
 

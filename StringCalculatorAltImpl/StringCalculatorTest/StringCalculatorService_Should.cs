@@ -52,10 +52,17 @@ namespace StringCalculator.Test
         }
 
         [Test]
-        public void ThrowAnException_WhenInputContainsNegativeNumbers()
+        public void ThrowAnException_WhenInputContainsNegativeNumbers_OLD()
         {
             Assert.That(() => StringCalculatorService.Add("-1"), Throws.ArgumentException.With
                 .Property("Message").EqualTo("Negatives not allowed"));
+        }
+
+        [Test]
+        public void ThrowAnException_WhenInputContainsNegativeNumbers()
+        {
+            Assert.That(() => StringCalculatorService.Add("-1,-3"), Throws.ArgumentException.With
+                .Property("Message").EqualTo("Negatives not allowed: -1, -3"));
         }
     }
 }
