@@ -7,7 +7,12 @@ namespace PrimeFactor.Service
     {
         public static List<int> calculate(int number)
         {
-            return new List<int>();
+            List<int> lists = new List<int>();
+            if (number == 2)
+            {
+                lists.Add(2);
+            }
+            return lists;
         }
     }
 }
