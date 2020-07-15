@@ -11,12 +11,33 @@ namespace StringCalculator
             if (text.Length == 0) return 0;
 
             List<string> tokens = text.Split(",").ToList();
-            if (tokens.Count == 2)
-            {
-                return int.Parse(tokens[0]) + int.Parse(tokens[1]);
-            }
+            List<int> numbers = Convert(tokens);
+            int sum = Sum(numbers);
+            return sum;
 
             return int.Parse(text);
+        }
+
+        private static int Sum(List<int> numbers)
+        {
+            int sum = 0;
+            foreach (int number in numbers)
+            {
+                sum += number;
+            }
+
+            return sum;
+        }
+
+        private static List<int> Convert(List<string> tokens)
+        {
+            List<int> numbers = new List<int>();
+            foreach (string token in tokens)
+            {
+                numbers.Add(int.Parse(token));
+            }
+
+            return numbers;
         }
     }
 }

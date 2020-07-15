@@ -25,12 +25,13 @@ namespace StringCalculator.Test
             Assert.That(number, Is.EqualTo(1));
         }
 
-        [Test]
-        public void ReturnTheSum_WhenInputIsACommaSeparatedList()
+        [TestCase("1,2", 3)]
+        [TestCase("1,2,3", 6)]
+        public void ReturnTheSum_WhenInputIsACommaSeparatedList(string text, int expectedNumber)
         {
-            int number = StringCalculatorService.Add("1,2");
+            int number = StringCalculatorService.Add(text);
 
-            Assert.That(number, Is.EqualTo(3));
+            Assert.That(number, Is.EqualTo(expectedNumber));
         }
     }
 }
