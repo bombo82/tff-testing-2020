@@ -48,5 +48,11 @@ namespace PrimeFactorsTest
             }
             Assert.Fail();
         }
+
+        [Test]
+        public void Zero_ShouldThrow_InvalidOperationException()
+        {
+            Assert.That(() => PrimeFactors.calculate(0), Throws.InvalidOperationException);
+        }
     }
 }
