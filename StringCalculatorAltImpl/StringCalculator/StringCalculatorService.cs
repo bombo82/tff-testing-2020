@@ -12,9 +12,20 @@ namespace StringCalculator
 
             List<string> tokens = Tokenize(text);
             List<int> numbers = Convert(tokens);
+
+            CheckNegatives(numbers);
+
             int sum = Sum(numbers);
 
             return sum;
+        }
+
+        private static void CheckNegatives(List<int> numbers)
+        {
+            foreach (int number in numbers)
+            {
+                if (number < 0) throw new ArgumentException("Negatives not allowed");
+            }
         }
 
         private static List<string> Tokenize(string text)

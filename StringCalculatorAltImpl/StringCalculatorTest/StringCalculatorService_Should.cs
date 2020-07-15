@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace StringCalculator.Test
 {
@@ -48,6 +49,13 @@ namespace StringCalculator.Test
             int number = StringCalculatorService.Add("//;\n1;2");
 
             Assert.That(number, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void ThrowAnException_WhenInputContainsNegativeNumbers()
+        {
+            Assert.That(() => StringCalculatorService.Add("-1"), Throws.ArgumentException.With
+                .Property("Message").EqualTo("Negatives not allowed"));
         }
     }
 }
