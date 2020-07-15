@@ -9,13 +9,16 @@ namespace StringCalculator
         public static int Add(string text)
         {
             if (text.Length == 0) return 0;
-
-            List<string> tokens = text.Split(",").ToList();
+            List<string> tokens = Tokenize(text);
             List<int> numbers = Convert(tokens);
             int sum = Sum(numbers);
-            return sum;
 
-            return int.Parse(text);
+            return sum;
+        }
+
+        private static List<string> Tokenize(string text)
+        {
+            return text.Split(new string[] { ",", "/n" }, StringSplitOptions.None).ToList();
         }
 
         private static int Sum(List<int> numbers)
