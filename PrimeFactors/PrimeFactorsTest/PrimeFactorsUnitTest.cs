@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using PrimeFactor.Service;
+using System;
 
 namespace PrimeFactorsTest
 {
@@ -32,6 +33,20 @@ namespace PrimeFactorsTest
             List<int> primeFactors = PrimeFactors.calculate(number);
 
             Assert.That(primeFactors, Is.EqualTo(expectedFactors));
+        }
+
+        [Test]
+        public void NegativeNumber_ShouldThrow_InvalidOperationException()
+        {
+            try
+            {
+                List<int> primeFactors = PrimeFactors.calculate(-1);
+            }
+            catch(InvalidOperationException e)
+            {
+                Assert.Pass();
+            }
+            Assert.Fail();
         }
     }
 }

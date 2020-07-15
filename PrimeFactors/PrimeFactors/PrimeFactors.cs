@@ -7,6 +7,8 @@ namespace PrimeFactor.Service
     {
         public static List<int> calculate(int number)
         {
+            if (number < 0) throw new InvalidOperationException();
+
             List<int> lists = new List<int>();
 
             int value = 2;
