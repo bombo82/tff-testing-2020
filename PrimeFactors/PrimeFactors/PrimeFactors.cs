@@ -11,7 +11,7 @@ namespace PrimeFactor.Service
 
             while(number > 1)
             {
-                for (int value = 2; value <= 3; value++)
+                for (int value = 2; value <= number; value++)
                 {
                     if (number % value == 0)
                     {
