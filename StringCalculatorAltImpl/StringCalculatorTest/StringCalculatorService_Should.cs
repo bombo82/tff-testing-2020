@@ -39,7 +39,7 @@ namespace StringCalculator.Test
         [Test]
         public void AcceptCommaAndNewLineAsSeparator()
         {
-            int number = StringCalculatorService.Add("1/n2,3");
+            int number = StringCalculatorService.Add("1\n2,3");
 
             Assert.That(number, Is.EqualTo(6));
         }

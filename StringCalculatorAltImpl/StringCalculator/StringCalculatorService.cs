@@ -63,7 +63,7 @@ namespace StringCalculator
             }
             else
             {
-                separator = new string[] { ",", "/n" };
+                separator = new string[] { ",", "\n" };
             }
 
             return separator;
