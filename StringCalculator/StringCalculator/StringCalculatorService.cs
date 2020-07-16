@@ -14,7 +14,7 @@ namespace StringCalculator
                 return 0;
             }
 
-            string[] tokens = text.Split(",");
+            string[] tokens = text.Split(new string[] { ",", "\n" }, StringSplitOptions.None);
             List<int> numbers = ConvertToInteger(tokens);
 
             return numbers.Sum();

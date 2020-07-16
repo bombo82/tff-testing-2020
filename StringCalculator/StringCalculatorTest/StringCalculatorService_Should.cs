@@ -41,5 +41,13 @@ namespace StringCalculatorTest
 
             Assert.That(number, Is.EqualTo(18));
         }
+
+        [Test]
+        public void AcceptCommaAndNewlineAsSeparator()
+        {
+            int number = StringCalculatorService.Add("1\n2,3");
+
+            Assert.That(number, Is.EqualTo(6));
+        }
     }
 }
