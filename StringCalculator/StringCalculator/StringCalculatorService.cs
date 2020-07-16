@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace StringCalculator
 {
@@ -12,12 +15,20 @@ namespace StringCalculator
             }
 
             string[] tokens = text.Split(",");
-            if (tokens.Length == 2)
+            List<int> numbers = ConvertToInteger(tokens);
+
+            return numbers.Sum();
+        }
+
+        private static List<int> ConvertToInteger(string[] tokens)
+        {
+            List<int> numbers = new List<int>();
+            foreach (string token in tokens)
             {
-                return int.Parse(tokens[0]) + int.Parse(tokens[1]);
+                numbers.Add(int.Parse(token));
             }
 
-            return int.Parse(text);
+            return numbers;
         }
     }
 }

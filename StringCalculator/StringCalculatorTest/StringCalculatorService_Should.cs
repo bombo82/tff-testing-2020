@@ -33,5 +33,13 @@ namespace StringCalculatorTest
 
             Assert.That(number, Is.EqualTo(3));
         }
+
+        [Test]
+        public void ReturnTheSum_WhenInputIsAListOfNumbers()
+        {
+            int number = StringCalculatorService.Add("1,2,5,10");
+
+            Assert.That(number, Is.EqualTo(18));
+        }
     }
 }
