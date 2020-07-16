@@ -49,5 +49,13 @@ namespace StringCalculatorTest
 
             Assert.That(number, Is.EqualTo(6));
         }
+
+        [Test]
+        public void AcceptACustomDelimiter()
+        {
+            int number = StringCalculatorService.Add("//;\n1;2");
+
+            Assert.That(number, Is.EqualTo(3));
+        }
     }
 }
