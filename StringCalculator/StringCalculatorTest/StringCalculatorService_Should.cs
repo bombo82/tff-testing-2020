@@ -17,5 +17,13 @@ namespace StringCalculatorTest
 
             Assert.Pass();
         }
+
+        [Test]
+        public void ReturnZero_WhenInputIsEmptyString()
+        {
+            int number = StringCalculatorService.Add("");
+
+            Assert.That(number, Is.EqualTo(0));
+        }
     }
 }
