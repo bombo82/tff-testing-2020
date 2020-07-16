@@ -11,19 +11,19 @@ namespace StringCalculatorTest
         }
 
         [Test]
-        public void AcceptAStringAsInputAndReturnANumber()
-        {
-            StringCalculatorService.Add("qualsiasi stringa");
-
-            Assert.Pass();
-        }
-
-        [Test]
         public void ReturnZero_WhenInputIsEmptyString()
         {
             int number = StringCalculatorService.Add("");
 
             Assert.That(number, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void ReturnTheNumber_WhenInputStringIsANumber()
+        {
+            int number = StringCalculatorService.Add("1");
+
+            Assert.That(number, Is.EqualTo(1));
         }
     }
 }
