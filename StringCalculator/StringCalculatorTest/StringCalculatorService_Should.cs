@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using StringCalculator;
 
 namespace StringCalculatorTest
 {
@@ -10,8 +11,10 @@ namespace StringCalculatorTest
         }
 
         [Test]
-        public void Test1()
+        public void AcceptAStringAsInputAndReturnANumber()
         {
+            StringCalculatorService.Add("qualsiasi stringa");
+
             Assert.Pass();
         }
     }
