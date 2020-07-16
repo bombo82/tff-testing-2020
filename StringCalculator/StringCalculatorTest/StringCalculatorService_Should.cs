@@ -25,5 +25,13 @@ namespace StringCalculatorTest
 
             Assert.That(number, Is.EqualTo(1));
         }
+
+        [Test]
+        public void ReturnTheSum_WhenInputIsTwoNumbers()
+        {
+            int number = StringCalculatorService.Add("1,2");
+
+            Assert.That(number, Is.EqualTo(3));
+        }
     }
 }
