@@ -6,9 +6,16 @@ namespace LeapYear.Service
     {
         public bool IsLeapYear(int year)
         {
-            if (year == 0) throw new ArgumentException("Year zero (0) does NOT exists!");
+            if (year == 0)
+                throw new ArgumentException("Year zero (0) does NOT exists!");
 
-            return year > 0 && (year % 100 == 0 ? year % 400 == 0 || year < 1582 : year % 4 == 0);
+            if (year <= 0)
+                return false;
+            
+            if (year % 100 == 0)
+                return year % 400 == 0 || year < 1582;
+                
+            return year % 4 == 0;
         }
     }
 }
