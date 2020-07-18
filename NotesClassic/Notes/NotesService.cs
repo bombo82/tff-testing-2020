@@ -1,5 +1,6 @@
 ﻿using Notes.Repository;
 using System;
+using System.Collections.Generic;
 
 namespace Notes.Service
 {
@@ -16,6 +17,11 @@ namespace Notes.Service
         {
             Note note = new Note(titol, description);
             repository.Insert(note);
+        }
+
+        public IList<Note> All()
+        {
+            return new List<Note>();
         }
     }
 }

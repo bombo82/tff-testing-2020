@@ -9,16 +9,20 @@ namespace Notes.UnitTest.Service
 {
     public class NotesService_Test
     {
+
+        NotesRepository repository;
+        NotesService notesService;
+
         [SetUp]
         public void Setup()
         {
+            repository = new NotesRepository();
+            notesService = new NotesService(repository);
         }
 
         [Test]
         public void ShouldAddNewANote()
         {
-            NotesRepository repository = new NotesRepository();
-            NotesService notesService = new NotesService(repository);
             notesService.Add("titolo", "descrizione");
 
             IList<Note> notes = repository.notes;
@@ -27,6 +31,14 @@ namespace Notes.UnitTest.Service
             Note note = notes.First();
             Assert.That(note.Titol, Is.EqualTo("titolo"));
             Assert.That(note.Description, Is.EqualTo("descrizione"));
+        }
+
+        [Test]
+        public void ShouldReturnEmptyList_BeforeAddANewNote()
+        {
+            IList<Note> notes = notesService.All();
+
+            Assert.That(notes, Is.Empty);
         }
     }
 }
