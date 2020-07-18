@@ -71,5 +71,13 @@ namespace Notes.UnitTest.Service
             DateTime creationDate = testClock.Now();
             Assert.That(note.CreationDate, Is.EqualTo(creationDate));
         }
+
+        [Test]
+        public void ShouldRemoveAllNotes()
+        {
+            notesService.RemoveAll();
+
+            Assert.That(repository.notes, Is.Empty);
+        }
     }
 }

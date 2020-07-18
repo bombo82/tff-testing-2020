@@ -14,6 +14,10 @@ namespace Notes.UnitTest.Repository
             return notes.ToImmutableList();
         }
 
+        public void Clear()
+        {
+        }
+
         public void Insert(Note note)
         {
             notes.Add(note);

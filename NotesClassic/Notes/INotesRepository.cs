@@ -7,5 +7,6 @@ namespace Notes.Repository
     {
         void Insert(Note note);
         IList<Note> All();
+        void Clear();
     }
 }

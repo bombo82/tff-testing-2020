@@ -30,5 +30,10 @@ namespace Notes.Service
         {
             return repository.All();
         }
+
+        public void RemoveAll()
+        {
+            repository.Clear();
+        }
     }
 }
