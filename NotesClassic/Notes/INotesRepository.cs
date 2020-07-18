@@ -6,5 +6,6 @@ namespace Notes.Repository
     public interface INotesRepository
     {
         void Insert(Note note);
+        IList<Note> All();
     }
 }

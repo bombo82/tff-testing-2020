@@ -21,7 +21,7 @@ namespace Notes.Service
 
         public IList<Note> All()
         {
-            return new List<Note>();
+            return repository.All();
         }
     }
 }

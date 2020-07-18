@@ -9,6 +9,11 @@ namespace Notes.UnitTest.Repository
     {
         public List<Note> notes = new List<Note>();
 
+        public IList<Note> All()
+        {
+            return notes.ToImmutableList();
+        }
+
         public void Insert(Note note)
         {
             notes.Add(note);

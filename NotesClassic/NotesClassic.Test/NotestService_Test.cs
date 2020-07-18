@@ -40,5 +40,22 @@ namespace Notes.UnitTest.Service
 
             Assert.That(notes, Is.Empty);
         }
+
+        [Test]
+        public void ShouldReturAListOfAddedNotes()
+        {
+            List<Note> expectedNotes = new List<Note>();
+            expectedNotes.Add(new Note("titolo 1", "Descrizione 1"));
+            expectedNotes.Add(new Note("titolo 2", "Descrizione 2"));
+            expectedNotes.Add(new Note("titolo 3", "Descrizione 3"));
+            repository.notes = expectedNotes;
+
+            IList<Note> notes = notesService.All();
+
+            Assert.That(notes, Has.Count.EqualTo(3));
+            Assert.That(notes[0], Is.EqualTo(expectedNotes[0]));
+            Assert.That(notes[1], Is.EqualTo(expectedNotes[1]));
+            Assert.That(notes[2], Is.EqualTo(expectedNotes[2]));
+        }
     }
 }
