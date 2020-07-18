@@ -10,14 +10,16 @@ namespace Notes.UnitTest.Service
     public class NotesService_Test
     {
 
-        NotesRepository repository;
-        NotesService notesService;
+        private NotesRepository repository;
+        private IClock testClock;
+        private NotesService notesService;
 
         [SetUp]
         public void Setup()
         {
             repository = new NotesRepository();
-            notesService = new NotesService(repository);
+            testClock = new TestClock();
+            notesService = new NotesService(repository, testClock);
         }
 
         [Test]
@@ -66,7 +68,7 @@ namespace Notes.UnitTest.Service
             IList<Note> notes = repository.notes;
 
             Note note = notes.First();
-            DateTime creationDate = DateTime.Now;
+            DateTime creationDate = testClock.Now();
             Assert.That(note.CreationDate, Is.EqualTo(creationDate));
         }
     }
