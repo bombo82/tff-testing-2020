@@ -15,7 +15,7 @@ namespace Notes.Service
 
         public void Add(string titol, string description)
         {
-            Note note = new Note(titol, description);
+            Note note = new Note(titol, description, DateTime.Now);
             repository.Insert(note);
         }
 

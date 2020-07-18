@@ -1,7 +1,7 @@
-using Notes.Repository;
 using Notes.Service;
 using Notes.UnitTest.Repository;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,9 +45,9 @@ namespace Notes.UnitTest.Service
         public void ShouldReturAListOfAddedNotes()
         {
             List<Note> expectedNotes = new List<Note>();
-            expectedNotes.Add(new Note("titolo 1", "Descrizione 1"));
-            expectedNotes.Add(new Note("titolo 2", "Descrizione 2"));
-            expectedNotes.Add(new Note("titolo 3", "Descrizione 3"));
+            expectedNotes.Add(new Note("titolo 1", "Descrizione 1", DateTime.Now));
+            expectedNotes.Add(new Note("titolo 2", "Descrizione 2", DateTime.Now));
+            expectedNotes.Add(new Note("titolo 3", "Descrizione 3", DateTime.Now));
             repository.notes = expectedNotes;
 
             IList<Note> notes = notesService.All();
@@ -56,6 +56,18 @@ namespace Notes.UnitTest.Service
             Assert.That(notes[0], Is.EqualTo(expectedNotes[0]));
             Assert.That(notes[1], Is.EqualTo(expectedNotes[1]));
             Assert.That(notes[2], Is.EqualTo(expectedNotes[2]));
+        }
+
+        [Test]
+        public void ANote_ShouldHaveCreationDate()
+        {
+            notesService.Add("titolo", "descrizione");
+
+            IList<Note> notes = repository.notes;
+
+            Note note = notes.First();
+            DateTime creationDate = DateTime.Now;
+            Assert.That(note.CreationDate, Is.EqualTo(creationDate));
         }
     }
 }
