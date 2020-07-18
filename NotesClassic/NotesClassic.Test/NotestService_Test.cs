@@ -10,14 +10,14 @@ namespace Notes.UnitTest.Service
     public class NotesService_Test
     {
 
-        private NotesRepository repository;
+        private TestNotesRepository repository;
         private IClock testClock;
         private NotesService notesService;
 
         [SetUp]
         public void Setup()
         {
-            repository = new NotesRepository();
+            repository = new TestNotesRepository();
             testClock = new TestClock();
             notesService = new NotesService(repository, testClock);
         }

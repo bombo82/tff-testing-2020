@@ -5,7 +5,7 @@ using System.Collections.Immutable;
 
 namespace Notes.UnitTest.Repository
 {
-    public class NotesRepository : INotesRepository
+    class TestNotesRepository : INotesRepository
     {
         public List<Note> notes = new List<Note>();
 
