@@ -16,5 +16,10 @@ namespace Notes.UnitTest.Service
         {
             notes.Add(note);
         }
+
+        public void Truncate()
+        {
+            notes.Clear();
+        }
     }
 }

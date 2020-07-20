@@ -6,5 +6,6 @@ namespace Notes.Service
     {
         void Insert(Note note);
         IList<Note> FindAll();
+        void Truncate();
     }
 }

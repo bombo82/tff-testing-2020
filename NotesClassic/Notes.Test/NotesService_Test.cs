@@ -76,5 +76,30 @@ namespace Notes.UnitTest.Service
             IList<Note> notes = service.All();
             Assert.That(notes, Has.Count.EqualTo(2));
         }
+
+        [Test]
+        public void Should_ClearAllAddedNotes()
+        {
+            service.Add("titolo 1", "description 1");
+            service.Add("titolo 2", "description 2");
+
+            service.Clear();
+
+            IList<Note> notes = service.All();
+            Assert.That(notes, Is.Empty);
+        }
+
+        [Test]
+        public void Should_ClearAllAddedNotes_UsingRepository()
+        {
+            IList<Note> repositoryNotes = new List<Note>();
+            repositoryNotes.Add(new Note("titolo 1", "description 1", DateTime.Now));
+            repositoryNotes.Add(new Note("titolo 2", "description 2", DateTime.Now));
+            repository.notes = repositoryNotes;
+
+            service.Clear();
+
+            Assert.That(repository.notes, Is.Empty);
+        }
     }
 }
