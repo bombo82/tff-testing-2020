@@ -33,7 +33,6 @@ namespace Notes.Service
 
         public void RemoveAll()
         {
-            repository.Clear();
         }
     }
 }
