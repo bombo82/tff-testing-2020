@@ -1,5 +1,6 @@
 using Notes.Service;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,13 +9,15 @@ namespace Notes.UnitTest.Service
     public class NotesService_Test
     {
         private TestNotesRepository repository;
+        private TestClock clock;
         private NotesService service;
 
         [SetUp]
         public void Setup()
         {
             repository = new TestNotesRepository();
-            service = new NotesService(repository);
+            clock = new TestClock();
+            service = new NotesService(repository, clock);
         }
 
         [Test]
@@ -33,6 +36,15 @@ namespace Notes.UnitTest.Service
             Note note = repository.notes.First();
             Assert.That(note.title, Is.EqualTo("titolo"));
             Assert.That(note.description, Is.EqualTo("descrizione"));
+        }
+
+        [Test]
+        public void AddedNote_ShouldContainsCreationDate()
+        {
+            service.Add("titolo", "descrizione");
+
+            Note note = repository.notes.First();
+            Assert.That(note.creationDate, Is.EqualTo(clock.Now()));
         }
 
         [Test]
@@ -57,8 +69,8 @@ namespace Notes.UnitTest.Service
         public void Should_RetunrAListOfAddedNotes_UsingRepository()
         {
             IList<Note> repositoryNotes = new List<Note>();
-            repositoryNotes.Add(new Note("titolo 1", "description 1"));
-            repositoryNotes.Add(new Note("titolo 2", "description 2"));
+            repositoryNotes.Add(new Note("titolo 1", "description 1", DateTime.Now));
+            repositoryNotes.Add(new Note("titolo 2", "description 2", DateTime.Now));
             repository.notes = repositoryNotes;
 
             IList<Note> notes = service.All();
