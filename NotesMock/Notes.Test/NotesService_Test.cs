@@ -8,13 +8,15 @@ namespace Notes.UnitTest.Service
     public class NotesService_Test
     {
         Mock<INotesRepository> repository;
+        Mock<IClock> clock;
         NotesService service;
 
         [SetUp]
         public void Setup()
         {
             repository = new Mock<INotesRepository>();
-            service = new NotesService(repository.Object);
+            clock = new Mock<IClock>();
+            service = new NotesService(repository.Object, clock.Object);
         }
 
         [Test]
@@ -30,9 +32,23 @@ namespace Notes.UnitTest.Service
         {
             service.Add("titolo", "descrizione");
 
-            Note note = new Note("titolo", "descrizione");
+            Note note = new Note("titolo", "descrizione", DateTime.Now);
             repository.Verify(repository => repository.Insert(note));
         }
 
+        [Test]
+        public void AddedNote_ShouldContainsCreationDate()
+        {
+            clock.SetReturnsDefault(new DateTime(2020, 12, 25));
+
+            service.Add("titolo", "descrizione");
+
+            DateTime expectedCreatedDate = new DateTime(2020, 12, 25);
+            repository.Verify(repository =>
+                repository.Insert(It.Is<Note>(note =>
+                    note.CreatedDate == expectedCreatedDate
+                ))
+            );
+        }
     }
 }

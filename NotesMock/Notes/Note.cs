@@ -6,11 +6,13 @@ namespace Notes
     {
         public string Title { get; }
         public string Description { get; }
+        public DateTime CreatedDate { get; }
 
-        public Note(string title, string description)
+        public Note(string title, string description, DateTime createdDate)
         {
             Title = title;
             Description = description;
+            CreatedDate = createdDate;
         }
 
         public override bool Equals(object obj)
